@@ -1,0 +1,86 @@
+
+/* base styles, feel free to edit */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    height: 100%;
+    font-family: -apple-system, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.hide {
+    display: none;
+}
+p { 
+    display: inline;
+}
+span.nav {
+    display: inline;
+    color: blue;
+}
+
+span.nav:hover { 
+    cursor: pointer;
+}
+
+.hoverState:hover {
+    cursor: pointer;
+    color:blueviolet;
+}
+.private { 
+    color: red;
+}
+
+.public { 
+    color: blue;
+}
+.channel-details-color { 
+    color: red;
+}
+
+#channel-details { 
+    color: blue
+}
+
+img { 
+    height: 70px;
+    width: 70px;
+}
+
+/* https://www.w3schools.com/howto/howto_css_next_prev.asp */
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+  
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+

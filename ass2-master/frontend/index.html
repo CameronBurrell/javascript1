@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Slackr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- You can add your styles and scripts here -->
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/provided.css" />
+  <script type="module" src="src/helpers.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- This is an example app structure, you can modify this as much as you choose -->
+  <header class="banner">
+    <h1>Slackr</h1>
+  </header>
+  <main role="main">
+    <!-- app goes here -->
+    <button id="toggle-mode">Dark/Light Mode</button> <br />
+    <br />
+    <div id="logged-out">
+      <span class="nav" id="nav-register" > Register </span>| 
+      <span class="nav" id="nav-login"> Login </span>
+      <hr />
+      <section id="register">
+        <h1> Register </h1>
+        <label for="register-email">Email:</label>
+        <input type="text" id="register-email"/><br />
+        <label for="register-password">Password:</label>
+        <input type="password" id="register-password"/><br />
+        <label for="register-name">Name:</label>
+        <input type="text" id="register-name" /><br />
+        <button id="register-action">Register</button>
+      </section>
+      <section id="login" class="hide">
+        <h1> Login </h1>
+        <label for="login-email">Email:</label>
+        <input type="text" id="login-email" /><br />
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password"/><br />
+        <button id="login-action">Login</button>
+      </section>
+    </div>
+    <div id="logged-in" class="hide">
+      <div id="app"></div>
+      <h3 class="public"> BLUE CHANNEL = PUBLIC </h3>
+      <h3 class="private"> RED CHANNEL = PRIVATE </h3>
+      <button id="channels-show"> &#9776; Channels </button>
+      <button id="create-channel-form">  &#65122; Create Channel </button>
+      <button id="user-profile">User Profile</button> 
+      <section id="view-user-profile" class="hide">
+        <label for="user-profile-name">New User Name: </label> 
+        <input type="text" id="user-profile-name" placeholder=""/><br />
+        <label for="user-profile-bio">New User Bio:  </label>
+        <input type="text" id="user-profile-bio" placeholder=""/><br />
+        <label for="user-profile-email">New User Email:  </label>
+        <input type="text" id="user-profile-email" placeholder=""/><br />
+        <label for="user-profile-password">New User Password:  </label>
+        <input type="password" id="user-profile-password" placeholder=""/>
+        <button id="change-view-password">Password Asterisks</button> <br />
+        <!-- <input type="file" accept="image/*" id="upload-image-file"></input>
+        <button id="upload-image-button">Upload</button> -->
+        <form id="upload">
+          <label for="file">File to upload</label>
+          <input type="file" id="photo-file" accept="image/*">
+      
+          <button id="upload-photo">Upload</button>
+        </form>
+
+        <button id="update-user-info">Update</button>
+      </section>
+      <section id="create-channel" class="hide">
+        <label for="new-channel-name">Name:</label>
+        <input type="text" id="new-channel-name"/><br />
+        <label for="new-channel-permissions">Private:</label> 
+        <select id="new-channel-permissions">
+          <option value="false" selected> Public </option>
+          <option value="true"> Private </option>
+        </select> <br />
+        <label for="new-channel-description"> Description:</label>
+        <br /><textarea id="new-channel-description" ></textarea> <br />
+        <button id="create-channel-button">Create</button> 
+      </section>
+        <div id="channels-list" class="hide">
+
+        </div>
+      <br />
+      <div id="channel-messages" class="hide">
+        <div id="channel-messages-top" >
+          <br /><button id="channel-details-button">Channel Details</button> 
+          <button id="update-channel-details-button">Update Channel Details</button>
+          <button id="leave-channel-button">Leave Channel</button>
+          <button id="pinned-channel-messages-button">Pinned Messages</button>
+          <button id="invite-users-to-channel-button">Invite Users</button>
+          <div id="channel-details" class="hide">
+            Channel Name: <p id="channel-name-details" class="channel-details-color" > </p> <br />
+            Channel Description: <p id="channel-description-details" class="channel-details-color"> </p> <br />
+            Channel Permissions: <p id="channel-permissions-details" class="channel-details-color"> </p> <br />
+            Channel Time Of Creation: <p id="channel-creation-details" class="channel-details-color"> </p> <br />
+            Channel Creator: <p id="channel-creator-details" class="channel-details-color"> </p> <br />
+            <!-- List Of All Users: <p id="channel-user-all-details" class="channel-details-color"> </p> <br /> -->
+          </div>
+          <div id="update-channel-details" class="hide">
+            <label for="update-channel-name">Channel Name:</label> 
+            <input type="text" id="update-channel-name"/><br />
+            <label for="update-channel-description">Channel Description: </label>
+            <input type="text" id="update-channel-description"/><br />
+            <button id="update-channel-details-submit">Submit</button> 
+          </div>
+          <div id="pinned-messages" class="hide">
+            
+          </div>
+          <br /><label for="msgsend-text">New Message:</label> 
+          <br /><textarea id="msgsend-text"></textarea> <br />
+          <button id="msgsend-action">Send</button><br />
+        </div>
+        <div id="channel-messages-body">
+
+        </div>
+      </div>
+      <!-- https://www.w3schools.com/howto/howto_css_next_prev.asp -->
+      <div id="next-previous" class="hide">
+        <a href="#" id="prev-button" class="previous">&#8249;</a>
+        <a href="#" id="next-button" class="next">&#8250;</a>
+      </div>
+      <br />
+      <button id="logout-action">logout</button>
+    </div>
+    
+    <!-- error popup -->
+    <div class="modal" id="error-popup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error!</h5>
+          </div>
+          <div class="modal-body" id="error-message">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="error-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- invite pop up -->
+    <div class="modal" id="invite-users-popup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Invite Users</h5>
+          </div>
+          <div class="modal-body" id="invite-users-message">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="invite-users" class="btn btn-secondary" data-dismiss="modal">Invite</button>
+            <button type="button" id="invite-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- display user profile -->
+    <div class="modal" id="user-details-popup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">User Details</h5>
+          </div>
+          <div class="modal-body" id="user-details-message">
+            Name: <p id="channel-name-details" class="channel-details-color" > </p> <br />
+            Bio: <p id="channel-description-details" class="channel-details-color"> </p> <br />
+            Email: <p id="channel-permissions-details" class="channel-details-color"> </p> <br />
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="user-details-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer>
+    <p>&copy; Slackr</p>
+  </footer>
+  <script type="module" src="src/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+
+</html>
